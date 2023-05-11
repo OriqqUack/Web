@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>전화번호 입력</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .input-number {
+      font-size: 36px;
+      padding: 10px;
+      text-align: center;
+      width: 535px;
+      height: 50px;
+    }
+    
+    .dial-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .dial-pad button {
+      font-size: 32px;
+      padding: 20px 40px;
+    }
+    
+    .dial-pad .delete-button {
+      grid-column: 1 / span 1;
+    }
+    
+    .dial-pad .confirm-button {
+      grid-column: 3;
+    }
+  </style>
+  <script>
+    function addToPhoneNumber(number) {
+      var inputNumber = document.getElementById('input-number');
+      var currentNumber = inputNumber.value;
+     
+      if (currentNumber.length < 13) {
+        if (currentNumber.length === 3 || currentNumber.length === 8) {
+          inputNumber.value += '-';
+        }
+        inputNumber.value += number;
+      }
+    }
+    
+    function clearPhoneNumber() {
+      var inputNumber = document.getElementById('input-number');
+      inputNumber.value = '';
+    }
+    
+    function confirmPhoneNumber() {
+      var inputNumber = document.getElementById('input-number');
+      alert('전화번호: ' + inputNumber.value);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <input type="tel" id="input-number" class="input-number" placeholder="전화번호 입력" maxlength="13">
+    
+    <div class="dial-pad">
+      <button onclick="addToPhoneNumber('1')">1</button>
+      <button onclick="addToPhoneNumber('2')">2</button>
+      <button onclick="addToPhoneNumber('3')">3</button>
+      <button onclick="addToPhoneNumber('4')">4</button>
+      <button onclick="addToPhoneNumber('5')">5</button>
+      <button onclick="addToPhoneNumber('6')">6</button>
+      <button onclick="addToPhoneNumber('7')">7</button>
+      <button onclick="addToPhoneNumber('8')">8</button>
+      <button onclick="addToPhoneNumber('9')">9</button>
+      <button class="delete-button" onclick="clearPhoneNumber()">지우기</button>
+      <button onclick="addToPhoneNumber('0')">0</button>
+      <button class="confirm-button" onclick="confirmPhoneNumber()">확인</button>
+    </div>
+  </div>
+</body>
+</html>
