@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>입력 폼</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .payment-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        table {
+            margin-bottom: 20px;
+        }
+
+        table tr td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <form id="myForm" action="#" method="POST">
+            <table>
+                <tr>
+                    <td><label for="name">이름:</label></td>
+                    <td><input type="text" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="phone">전화번호:</label></td>
+                    <td><input type="tel" id="phone" name="phone" pattern="[0-9]+" required></td>
+                </tr>
+                <tr>
+                    <td><label for="locker">사물함 번호:</label></td>
+                    <td>
+                        <input type="text" id="locker" name="locker" value="" readonly>
+                        <button type="button" onclick="generateLocker()">생성</button>
+                    </td>
+                </tr>
+            </table>
+
+            <input type="hidden" id="price" name="price" value="5000">
+            <input type="hidden" id="payment" name="payment">
+
+            <div class="payment-container">
+                <label>결제유형:</label>
+                <div class="payment-buttons">
+                    <button type="button" onclick="selectPayment('현금')">현금</button>
+                    <button type="button" onclick="selectPayment('카드')">카드</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function generateLocker() {
+            var lockerNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById("locker").value = lockerNumber;
+        }
+
+        function selectPayment(paymentType) {
+            document.getElementById("payment").value = paymentType;
+            if (paymentType === "현금") {
+                window.location.href = "cash.html";
+            } else if (paymentType === "카드") {
+                window.location.href = "card.html";
+            }
+        }
+    </script>
+</body>
+
+</html>

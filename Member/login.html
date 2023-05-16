@@ -59,7 +59,12 @@
     
     function confirmPhoneNumber() {
       var inputNumber = document.getElementById('input-number');
-      alert('전화번호: ' + inputNumber.value);
+      var phoneNumber = inputNumber.value;
+      
+      if (phoneNumber.length === 13) {
+        localStorage.setItem('phoneNumber', phoneNumber);
+        window.location.href = 'check.html';
+      }
     }
   </script>
 </head>

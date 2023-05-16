@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>결제 완료</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h1 id="message"></h1>
+        <h2 id="countdown">5</h2>
+    </div>
+
+    <script>
+        var countdownElement = document.getElementById("countdown");
+        var countdown = 5;
+
+        function startCountdown() {
+            var timer = setInterval(function() {
+                countdown--;
+                countdownElement.textContent = countdown;
+
+                if (countdown === 0) {
+                    clearInterval(timer);
+                    window.location.href = "../Main.html";
+                }
+            }, 1000);
+        }
+
+        var phoneNumber = localStorage.getItem('phoneNumber');
+        if (phoneNumber) {
+            var messageElement = document.getElementById("message");
+            messageElement.textContent = phoneNumber.slice(9) + "님 안녕하세요.";
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>
